@@ -106,6 +106,10 @@ sw
       canvas.width = 512;
       canvas.height = 256;
 
+      document.querySelector('#edit-area').spellcheck = false;
+      document.querySelector('#edit-area').focus();
+      document.querySelector('#edit-area').blur();
+
       var compileDebounce;
       document.querySelector('#edit-area').addEventListener('keyup', function() {
         clearTimeout(compileDebounce);
