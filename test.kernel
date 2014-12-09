@@ -1,0 +1,62 @@
+mv $address_lo, $id_lo
+mv $address_hi, $id_hi
+
+
+
+; if x * x + y * y > 100
+
+; $7 = x
+; $8 = y
+; $13 = 128
+
+sra $12, $15, 4
+
+ldi $data, 0x18C3
+
+ldi $13, 128
+ldi $14, 511
+and $7, $id_lo, $14
+sub $7, $7, $13
+sub $7, $7, $13
+sra $8, $id_lo, 9
+sll $14, $id_hi, 7
+add $8, $8, $14
+sub $8, $8, $13
+
+ldi $12, 5000
+mul $9, $7, $7
+mul $10, $8, $8
+add $11, $9, $10
+slt $mask, $12, $11
+? addi $data, $data 0xE000 ; red
+
+ldi $12, 3500
+ldi $14, 511
+and $7, $id_lo, $14
+sra $10, $15, 3
+add $7, $7, $10
+and $7, $7, $14
+sub $7, $7, $13
+sub $7, $7, $13
+sub $7, $7, $13
+mul $9, $7, $7
+mul $10, $8, $8
+add $11, $9, $10
+slt $mask, $12, $11
+? addi $data, $data, 0x0720 ; green
+
+ldi $12, 2000
+ldi $14, 511
+and $7, $id_lo, $14
+sra $10, $15, 2
+sub $7, $7, $10
+and $7, $7, $14
+sub $7, $7, $13
+mul $9, $7, $7
+mul $10, $8, $8
+add $11, $9, $10
+slt $mask, $12, $11
+? addi $data, $data, 0x001C; blue
+
+
+sw
