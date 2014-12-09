@@ -88,11 +88,11 @@ translations.ldc = unsupportedTranslation();
 translations.nop = ignoredTranslation();
 translations.thread_finished = ignoredTranslation();
 
-translations.mv = function(instruction) {
+translations.mv = function(instruction) {
   return translations.addi(['addi', instruction[1], instruction[2], '0']);
 }
 
-translations.ldi = function(instruction) {
+translations.ldi = function(instruction) {
   return translations.addi(['addi', instruction[1], '0', instruction[2]]);
 }
 
