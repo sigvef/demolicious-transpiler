@@ -3,6 +3,10 @@ function identity(x) {
 }
 
 function r(index) {
+  /* $0 is always 0 */
+  if(index == 0) {
+    return '0';
+  }
   return 'r[' + index + ']';
 }
 
@@ -10,6 +14,10 @@ var translations = {};
 
 function baseTranslation(result, preop, operand1,
                          operator, operand2, postop) {
+  /* instructions trying to write to $0 are simply ignored */
+  if (result == 0) {
+    return '';
+  }
   return [
     r(result), '=', preop, operand1, operator, operand2, postop, ';'
   ].join('');
