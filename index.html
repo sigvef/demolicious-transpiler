@@ -40,6 +40,15 @@
           postamble));
     }
 
+    function fetchFromHdc() {
+      var d_code = document.querySelector("#d-code").innerText;
+      var jsonp = document.createElement('script');
+      jsonp.src = 'http://hdc.burkow.no/?program='
+        + encodeURIComponent(d_code)
+        + '&callback=handleHdc';
+      document.querySelector('body').appendChild(jsonp);
+    }
+
     function handleHdc(code) {
       document.querySelector('#asm-code').innerText = code.join("\n");
       refreshGlsl();
@@ -64,14 +73,7 @@
       var compileDebounce;
       document.querySelector('#d-code').addEventListener('keyup', function() {
         clearTimeout(compileDebounce);
-        setTimeout(function() {
-          var d_code = document.querySelector("#d-code").innerText;
-          var jsonp = document.createElement('script');
-          jsonp.src = 'http://hdc.burkow.no/?program='
-            + encodeURIComponent(d_code)
-            + '&callback=handleHdc';
-          document.querySelector('body').appendChild(jsonp);
-        }, 100);
+        setTimeout(fetchFromHdc, 100);
       });
 
       gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
@@ -89,6 +91,7 @@
         gl.STATIC_DRAW
       );
 
+      fetchFromHdc();
       refreshGlsl();
       render();
     }
