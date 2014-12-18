@@ -1,8 +1,6 @@
 mv $address_lo, $id_lo
 mv $address_hi, $id_hi
 
-
-
 ; if x * x + y * y > 100
 
 ; $7 = x
@@ -57,6 +55,5 @@ mul $10, $8, $8
 add $11, $9, $10
 slt $mask, $12, $11
 ? addi $data, $data, 0x001C; blue
-
 
 sw

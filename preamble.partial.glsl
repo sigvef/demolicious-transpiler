@@ -1,5 +1,6 @@
+precision highp float;
+precision highp int;
 uniform float iGlobalTime;
-
 
 int xor(int a, int b) {
     int result = 0;
@@ -73,12 +74,10 @@ vec3 color(int data) {
 
 void main(void)
 {
-    
-    vec2 uv = gl_FragCoord.xy / iResolution.xy;
+    vec2 uv = gl_FragCoord.xy / vec2(512., 256.);
     uv.x *= 512.;
     uv.y = 256. - uv.y * 256.;
-   
-    
+
     int r[16];
     r[0] = 0;
     r[1] = ((int(uv.y) * 512 + int(uv.x)) / 0xFFFF);
