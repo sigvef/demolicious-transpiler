@@ -160,6 +160,7 @@ function transpile(asm, preamble, postamble) {
     return translations[instruction[0]](instruction);
   });
 
+  console.log(glsl);
   return preamble + glsl.join('\n') + postamble;
 }
 

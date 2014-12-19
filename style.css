@@ -1,0 +1,32 @@
+body, html {
+  background: #111; 
+}
+canvas {
+  position: fixed; 
+  left: 20px;
+  top: 50%;
+  margin-top: -128px;
+}
+
+#editors {
+  margin-left: 552px;
+}
+
+.edit-area {
+  display: inline-block;
+  font-size: 16px;
+  white-space: pre;
+  font-family: monospace;
+  color: #0f0;
+  outline: 0;
+}
+
+.left {
+  float: left;
+  width: 70%;
+}
+
+.right {
+  float: right;
+  width: 30%;
+}
