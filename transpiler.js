@@ -110,7 +110,7 @@ translations.sw = function(instruction) {
 
 translations['?'] = function(instruction) {
   return [
-    'if(r[mask]!=1){',
+    'if(r[mask]&1!=1){',
     translations[instruction[1]](instruction.slice(1)),
     '}'
   ].join('');
